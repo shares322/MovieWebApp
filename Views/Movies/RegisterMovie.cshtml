@@ -1,0 +1,18 @@
+﻿@model List<MovieWebApp.Models.Movies.RegisterMovie>
+@{
+    ViewData["Title"] = "RegisterMovie";
+}
+
+<h1>Movie Entered</h1>
+
+<div>
+    @if (TempData.ContainsKey("AddedMovie"))
+    {
+        <p class="table-success">@TempData["AddedMovie"] has been added to the collection</p>}
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

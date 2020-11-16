@@ -1,0 +1,55 @@
+﻿@model List<MovieWebApp.Models.Movies.MovieModel>
+
+
+<h1>Search Movies</h1>
+
+    <b> Search by Title: </b>
+    <div class="row justify-content-center align-items-center mt-3">
+        <div class="col-3 text-right">
+            <form asp-action="SearchResultTitle">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group"></div>
+
+                <label>Movie Title</label>
+                <div class="col-6">
+                    <input class="form-control" name="movieTitle" />
+                </div>
+                <div class="col-3">
+                    <input type="submit" class="btn btn-dark" value="Search" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+@using (Html.BeginForm("SearchResultGenre", "Movies", FormMethod.Post))
+{
+    <b> Search by Genre: </b>
+    <div class="row justify-content-center align-items-center mt-3">
+        <div class="col-3 text-right">
+            <form asp-action="SearchResultGenre">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group"></div>
+
+                <label>Movie Genre</label>
+                <div class="col-6">
+                    <select name="genres" class="w-100">
+                        @foreach (var item in Model)
+                        {
+                            <option value=@item.Genre>@item.Genre</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input type="submit" class="btn btn-dark" value="Search" />
+                </div>
+            </form>
+        </div>
+       
+    </div>
+}
+
+
+

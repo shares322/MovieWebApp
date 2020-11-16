@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MovieWebApp.Models.Movies.MovieModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div>
+    @if (TempData.ContainsKey("AddedMovie"))
+    {
+        <p class="text-dark">@TempData["AddedMovie"] has been added to list.</p>}
+</div>
+<div class="col-6 text-right">
+    <a asp-controller="Movies" asp-action="Search" class="btn btn-primary">
+        Search Movies
+    </a>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Directors)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Actors)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Directors)
+                </td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@item.MovieId">Add</a> |
+                    <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
